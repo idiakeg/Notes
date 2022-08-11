@@ -3,7 +3,6 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const Note = (props) => {
 	const { text, date, id } = props;
-	console.log(id);
 	return (
 		<div className="note">
 			<span>{text}</span>
