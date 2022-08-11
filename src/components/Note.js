@@ -1,13 +1,15 @@
 import React from "react";
 import { FaTrashAlt } from "react-icons/fa";
 
-const Note = () => {
+const Note = (props) => {
+	const { text, date, id } = props;
+	console.log(id);
 	return (
 		<div className="note">
-			<span>Hello!! This is our first note! Hurray</span>
+			<span>{text}</span>
 			<div className="note-footer">
-				<small>13/04/2022</small>
-				<FaTrashAlt className="delete-icon" size="1.2rem" />
+				<small>{date}</small>
+				<FaTrashAlt className="delete-icon" size="1.6rem" />
 			</div>
 		</div>
 	);
