@@ -29,3 +29,31 @@
 	align-items: center;
 	justify-content: space-between;
 }
+
+/* ADDNOTE STYLE */
+.note.new-note {
+	background-color: #67d7cc;
+}
+
+textarea {
+	border: none;
+	resize: none;
+	background-color: #67d7cc;
+}
+
+textarea:focus {
+	outline: none;
+	/* simply putting the above style property on the original textarea selector above would have worked just fine too */
+}
+
+.save {
+	border: none;
+	background-color: #e1e1e1;
+	padding: 0.5rem 1rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
+.save:hover {
+	background-color: #ededed;
+}
