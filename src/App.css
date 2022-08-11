@@ -1,0 +1,31 @@
+/* CONTAINER STYLES */
+.container {
+	max-width: 96rem;
+	margin: 0 auto;
+	padding: 1.5rem;
+}
+
+/* NOTELIST STYLE */
+.note-list {
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+	/* what repeat(auto-fit, minmax(25rem, 1fr) dp is that the min-width of the grid item is 25rem but is however allowed to grow to occupy 1fr. stting the no of colums with auto-fit means there'd be no need for media query to specify the no of columns that should be obsevered at certain screen width. what auto-fit does is, specify the number of colums based on the current width of the screen after sizing the grid item to their min(25rem) */
+}
+
+/* NOTE STYLES */
+.note {
+	background-color: #fef68a;
+	border-radius: 1rem;
+	padding: 1rem;
+	min-height: 17rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.note-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
