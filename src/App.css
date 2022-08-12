@@ -79,3 +79,19 @@ textarea:focus {
 	background-color: rgb(233 233 233);
 	outline: none;
 }
+
+/* HEADER STYLE */
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+/* DARK MODE STYLE */
+.dark-mode {
+	background-color: #333;
+	min-height: 100vh;
+}
+.dark-mode h1 {
+	color: white;
+}

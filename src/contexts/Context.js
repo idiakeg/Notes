@@ -25,6 +25,7 @@ export const ContextProvider = ({ children }) => {
 
 	const [noteText, setNoteText] = useState("");
 	const [searchText, setSearchtext] = useState("");
+	const [darkMode, setDarkMode] = useState(false);
 
 	// CHARACTER COUNT DEFINITION
 	const characterCount = 200;
@@ -66,6 +67,10 @@ export const ContextProvider = ({ children }) => {
 		}
 	};
 
+	const handleDarkMode = () => {
+		setDarkMode((current) => !current);
+	};
+
 	return (
 		<Context.Provider
 			value={{
@@ -80,6 +85,9 @@ export const ContextProvider = ({ children }) => {
 				searchText,
 				setSearchtext,
 				handleSearchText,
+				darkMode,
+				setDarkMode,
+				handleDarkMode,
 			}}
 		>
 			{children}
