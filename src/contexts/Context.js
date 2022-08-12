@@ -53,6 +53,11 @@ export const ContextProvider = ({ children }) => {
 		}
 	};
 
+	const handleDelete = (id) => {
+		const filteredNotes = notes.filter((item) => item.id !== id);
+		setNotes(filteredNotes);
+	};
+
 	return (
 		<Context.Provider
 			value={{
@@ -63,6 +68,7 @@ export const ContextProvider = ({ children }) => {
 				handleChange,
 				handleSave,
 				characterCount,
+				handleDelete,
 			}}
 		>
 			{children}
