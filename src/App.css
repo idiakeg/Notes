@@ -23,6 +23,7 @@
 	flex-direction: column;
 	justify-content: space-between;
 	word-break: break-all;
+	white-space: pre-wrap;
 }
 
 .note-footer {
