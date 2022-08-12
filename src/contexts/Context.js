@@ -25,10 +25,16 @@ export const ContextProvider = ({ children }) => {
 
 	const [noteText, setNoteText] = useState("");
 
+	// CHARACTER COUNT DEFINITION
+	const characterCount = 200;
+
 	// EVENT HANDLER DEFINITIONS
 	const handleChange = (e) => {
 		const newTextNote = e.target.value;
-		setNoteText(newTextNote);
+		//if the length of the textNote is greater than the character count, donot change the state of the noteText
+		if (characterCount - newTextNote.length >= 0) {
+			setNoteText(newTextNote);
+		}
 	};
 
 	const handleSave = (text) => {
@@ -55,6 +61,7 @@ export const ContextProvider = ({ children }) => {
 				setNoteText,
 				handleChange,
 				handleSave,
+				characterCount,
 			}}
 		>
 			{children}
