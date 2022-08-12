@@ -38,10 +38,11 @@ export const ContextProvider = ({ children }) => {
 	};
 
 	const handleSave = (text) => {
+		const date = new Date();
 		if (text.trim().length > 0) {
 			let noteObj = {
 				text,
-				date: "12/06/22",
+				date: date.toLocaleDateString(),
 				id: nanoid(),
 			};
 			setNotes((current) => {
