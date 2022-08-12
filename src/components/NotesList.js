@@ -5,12 +5,15 @@ import Context from "../contexts/Context";
 import AddNote from "./AddNote";
 
 const NotesList = () => {
-	let { notes } = useContext(Context);
+	let { notes, searchText } = useContext(Context);
+	const searchValue = searchText.toLowerCase();
 	return (
 		<div className="note-list">
-			{notes.map((note) => (
-				<Note text={note.text} id={note.id} date={note.date} key={note.id} />
-			))}
+			{notes
+				.filter((item) => item.text.toLowerCase().includes(searchValue))
+				.map((note) => (
+					<Note text={note.text} id={note.id} date={note.date} key={note.id} />
+				))}
 			<AddNote />
 		</div>
 	);

@@ -24,6 +24,7 @@ export const ContextProvider = ({ children }) => {
 	]);
 
 	const [noteText, setNoteText] = useState("");
+	const [searchText, setSearchtext] = useState("");
 
 	// CHARACTER COUNT DEFINITION
 	const characterCount = 200;
@@ -58,6 +59,13 @@ export const ContextProvider = ({ children }) => {
 		setNotes(filteredNotes);
 	};
 
+	const handleSearchText = (value) => {
+		let newSearchText = value;
+		if (newSearchText !== " ") {
+			setSearchtext(newSearchText);
+		}
+	};
+
 	return (
 		<Context.Provider
 			value={{
@@ -69,6 +77,9 @@ export const ContextProvider = ({ children }) => {
 				handleSave,
 				characterCount,
 				handleDelete,
+				searchText,
+				setSearchtext,
+				handleSearchText,
 			}}
 		>
 			{children}

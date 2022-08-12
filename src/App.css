@@ -63,3 +63,19 @@ textarea:focus {
 .save:hover {
 	background-color: #ededed;
 }
+
+/* SEARCH STYLE */
+.search {
+	border-radius: 0.6rem;
+	margin-bottom: 1rem;
+	display: flex;
+	padding: 0.6rem;
+	background-color: rgb(233, 233, 233);
+	gap: 0.5rem;
+}
+
+.search input {
+	border: none;
+	background-color: rgb(233 233 233);
+	outline: none;
+}
