@@ -1,31 +1,25 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
 const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
 	// USE STATE DEFINITIONS
-	const [notes, setNotes] = useState([
-		{
-			text: "This is my first note!!",
-			date: "12/05/22",
-			id: nanoid(),
-		},
-		{
-			text: "This is my second note!!",
-			date: "14/05/22",
-			id: nanoid(),
-		},
-		{
-			text: "This is my third note!!",
-			date: "19/05/22",
-			id: nanoid(),
-		},
-	]);
+	const [notes, setNotes] = useState(
+		JSON.parse(localStorage.getItem("react-note-app")) !== null
+			? JSON.parse(localStorage.getItem("react-note-app"))
+			: []
+	);
 
 	const [noteText, setNoteText] = useState("");
 	const [searchText, setSearchtext] = useState("");
 	const [darkMode, setDarkMode] = useState(false);
+
+	// USE EFFECT DEFINITION
+	useEffect(() => {
+		// save the note to local storage
+		localStorage.setItem("react-note-app", JSON.stringify(notes));
+	}, [notes]);
 
 	// CHARACTER COUNT DEFINITION
 	const characterCount = 200;
