@@ -3,6 +3,8 @@ import { nanoid } from "nanoid";
 
 const Context = createContext();
 
+const id = nanoid();
+
 export const ContextProvider = ({ children }) => {
 	// USE STATE DEFINITIONS
 	const [notes, setNotes] = useState(
@@ -14,10 +16,10 @@ export const ContextProvider = ({ children }) => {
 	const [noteText, setNoteText] = useState("");
 	const [searchText, setSearchtext] = useState("");
 	const [darkMode, setDarkMode] = useState(false);
+	const [editTodo, setEditTodo] = useState(null);
 
 	// USE EFFECT DEFINITION
 	useEffect(() => {
-		// save the note to local storage
 		localStorage.setItem("react-note-app", JSON.stringify(notes));
 	}, [notes]);
 
@@ -27,7 +29,7 @@ export const ContextProvider = ({ children }) => {
 	// EVENT HANDLER DEFINITIONS
 	const handleChange = (e) => {
 		const newTextNote = e.target.value;
-		//if the length of the textNote is greater than the character count, donot change the state of the noteText
+
 		if (characterCount - newTextNote.length >= 0) {
 			setNoteText(newTextNote);
 		}
@@ -35,11 +37,42 @@ export const ContextProvider = ({ children }) => {
 
 	const handleSave = (text) => {
 		const date = new Date();
-		if (text.trim().length > 0) {
+		if (!editTodo) {
+			if (text.trim().length > 0) {
+				let noteObj = {
+					text,
+					date: date.toLocaleDateString(),
+					id: nanoid(),
+				};
+				setNotes((current) => {
+					return [...current, noteObj];
+				});
+			}
+
+			setNoteText("");
+		} else {
+			updateNote(editTodo);
+		}
+	};
+
+	const handleEdit = (id) => {
+		const filteredNotes = notes.filter((item) => item.id !== id);
+		setNotes(filteredNotes);
+		const selectedNote = notes.find((item) => item.id === id);
+		setEditTodo(selectedNote);
+		// console.log(selectedNote);
+		let newNoteText = selectedNote.text;
+		setNoteText(newNoteText);
+	};
+
+	const updateNote = (update) => {
+		const editedNote = { ...update, text: noteText };
+		const date = new Date();
+		if (editedNote.text.trim().length > 0) {
 			let noteObj = {
-				text,
+				text: editedNote.text,
 				date: date.toLocaleDateString(),
-				id: nanoid(),
+				id: editedNote.id,
 			};
 			setNotes((current) => {
 				return [...current, noteObj];
@@ -47,6 +80,9 @@ export const ContextProvider = ({ children }) => {
 
 			setNoteText("");
 		}
+
+		setEditTodo(null);
+		// console.log(editedNote);
 	};
 
 	const handleDelete = (id) => {
@@ -68,6 +104,7 @@ export const ContextProvider = ({ children }) => {
 	return (
 		<Context.Provider
 			value={{
+				id,
 				notes,
 				setNotes,
 				noteText,
@@ -82,6 +119,8 @@ export const ContextProvider = ({ children }) => {
 				darkMode,
 				setDarkMode,
 				handleDarkMode,
+				handleEdit,
+				editTodo,
 			}}
 		>
 			{children}

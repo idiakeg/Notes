@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Context from "../contexts/Context";
 
 const AddNote = () => {
-	const { noteText, handleChange, handleSave, characterCount } =
+	const { noteText, handleChange, handleSave, characterCount, editTodo } =
 		useContext(Context);
 	return (
 		<div className="note new-note">
@@ -16,8 +16,9 @@ const AddNote = () => {
 			></textarea>
 			<div className="note-footer">
 				<small>{characterCount - noteText.length} Remaining</small>
+
 				<button className="save" onClick={() => handleSave(noteText)}>
-					Save
+					{editTodo ? "Edit" : "Save"}
 				</button>
 			</div>
 		</div>
