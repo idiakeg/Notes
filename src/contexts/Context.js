@@ -3,8 +3,6 @@ import { nanoid } from "nanoid";
 
 const Context = createContext();
 
-const id = nanoid();
-
 export const ContextProvider = ({ children }) => {
 	// USE STATE DEFINITIONS
 	const [notes, setNotes] = useState(
@@ -82,7 +80,6 @@ export const ContextProvider = ({ children }) => {
 		}
 
 		setEditTodo(null);
-		// console.log(editedNote);
 	};
 
 	const handleDelete = (id) => {
@@ -104,7 +101,6 @@ export const ContextProvider = ({ children }) => {
 	return (
 		<Context.Provider
 			value={{
-				id,
 				notes,
 				setNotes,
 				noteText,
