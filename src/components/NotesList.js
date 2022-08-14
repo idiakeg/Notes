@@ -9,12 +9,12 @@ const NotesList = () => {
 	const searchValue = searchText.toLowerCase();
 	return (
 		<div className="note-list">
+			<AddNote />
 			{notes
 				.filter((item) => item.text.toLowerCase().includes(searchValue))
 				.map((note) => (
 					<Note text={note.text} id={note.id} date={note.date} key={note.id} />
 				))}
-			<AddNote />
 		</div>
 	);
 };
